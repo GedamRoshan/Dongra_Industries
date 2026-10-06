@@ -1,0 +1,6 @@
+# Robots.txt for Dongra Industries
+User-agent: *
+Allow: /
+
+# Sitemap URL (Replace with your actual domain name once hosted)
+Sitemap: https://dongraindustries.com/sitemap.xml

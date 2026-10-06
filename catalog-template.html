@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dongra Industries - Product Catalog 2026</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+        @page {
+            size: A4 portrait;
+            margin: 12mm 14mm;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: #1e293b;
+            background: #ffffff;
+            line-height: 1.5;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .page {
+            page-break-after: always;
+            position: relative;
+            min-height: 270mm;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .page:last-child {
+            page-break-after: avoid;
+        }
+
+        /* Header Bar */
+        .catalog-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 3px solid #0284c7;
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-img {
+            height: 48px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .company-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 24px;
+            font-weight: 800;
+            color: #0b2545;
+            line-height: 1.1;
+        }
+
+        .company-title span {
+            color: #0284c7;
+        }
+
+        .catalog-badge {
+            background: #0b2545;
+            color: #ffcc00;
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Hero / Cover Banner */
+        .cover-banner {
+            background: linear-gradient(135deg, #0b2545 0%, #0284c7 100%);
+            border-radius: 16px;
+            padding: 28px 24px;
+            color: #ffffff;
+            margin-bottom: 22px;
+        }
+
+        .cover-banner h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: #ffffff;
+        }
+
+        .cover-banner p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 90%;
+        }
+
+        .stats-strip {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 18px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-val {
+            font-family: 'Outfit', sans-serif;
+            font-size: 20px;
+            font-weight: 800;
+            color: #ffcc00;
+        }
+
+        .stat-lbl {
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.85);
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        /* Product Showcase Cards */
+        .product-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 16px;
+            margin-bottom: 18px;
+            background: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+            page-break-inside: avoid;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 18px;
+            align-items: center;
+        }
+
+        .product-thumb {
+            width: 100%;
+            height: 170px;
+            object-fit: contain;
+            background: #f8fafc;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            padding: 4px;
+        }
+
+        .product-category {
+            color: #0284c7;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+        }
+
+        .product-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: #0b2545;
+            margin: 2px 0 6px 0;
+        }
+
+        .product-desc {
+            font-size: 12px;
+            color: #475569;
+            margin-bottom: 10px;
+            line-height: 1.45;
+        }
+
+        .feature-bullets {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px 12px;
+            margin-bottom: 12px;
+            font-size: 11px;
+            color: #334155;
+            font-weight: 600;
+        }
+
+        .feature-bullets span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .check-icon {
+            color: #0284c7;
+            font-weight: 800;
+        }
+
+        /* SKU Table */
+        .sku-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11px;
+            margin-top: 6px;
+        }
+
+        .sku-table th {
+            background: #f1f5f9;
+            color: #0b2545;
+            text-align: left;
+            padding: 6px 8px;
+            font-weight: 700;
+            border-bottom: 1px solid #cbd5e1;
+        }
+
+        .sku-table td {
+            padding: 5px 8px;
+            border-bottom: 1px solid #f1f5f9;
+            color: #334155;
+        }
+
+        .sku-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Footer */
+        .catalog-footer {
+            margin-top: auto;
+            border-top: 2px solid #e2e8f0;
+            padding-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 10px;
+            color: #64748b;
+        }
+
+        .contact-box {
+            background: #f8fafc;
+            border-left: 4px solid #0284c7;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-top: 14px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            font-size: 11px;
+            page-break-inside: avoid;
+        }
+
+        .contact-box div strong {
+            display: block;
+            color: #0b2545;
+            font-size: 11px;
+            margin-bottom: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PAGE 1: COVER & DETERGENT POWDER -->
+    <div class="page">
+        <div>
+            <header class="catalog-header">
+                <div class="logo-area">
+                    <img src="assets/images/logo.png" alt="Dongra Industries Logo" class="logo-img" onerror="this.style.display='none'">
+                    <div>
+                        <div class="company-title">Dongra<span>Industries</span></div>
+                        <div style="font-size: 10px; color: #64748b; font-weight: 600;">Sparkling Clean Everyday • Est. Quality</div>
+                    </div>
+                </div>
+                <div class="catalog-badge">Product Catalog 2026</div>
+            </header>
+
+            <div class="cover-banner">
+                <h1>High-Performance Cleaning Solutions</h1>
+                <p>Dongra Industries manufactures premium household and industrial-grade detergents and dishwashing formulations designed for unbeatable cleaning power, fabric protection, and gentle skin care.</p>
+                <div class="stats-strip">
+                    <div class="stat-item">
+                        <div class="stat-val">100%</div>
+                        <div class="stat-lbl">Tough Stain Removal</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-val">10M+</div>
+                        <div class="stat-lbl">Happy Households</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-val">50+</div>
+                        <div class="stat-lbl">Cities Network</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-val">ISO</div>
+                        <div class="stat-lbl">Standard Quality</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Flagship Product: Detergent Powder -->
+            <div class="product-card">
+                <div class="product-grid">
+                    <img src="assets/images/prite-banner.png" alt="New Prite Detergent Powder" class="product-thumb">
+                    <div>
+                        <div class="product-category">Flagship Laundry Care</div>
+                        <div class="product-title">New PRITE Detergent Powder</div>
+                        <div class="product-desc">
+                            Formulated with active oxygen micro-enzymes that dissolve deep into fabrics to eliminate stubborn mud, grease, curry, and collar grime without fading cloth brightness or damaging delicate fibers.
+                        </div>
+                        <div class="feature-bullets">
+                            <span><span class="check-icon">✓</span> Deep Clean Active Enzymes</span>
+                            <span><span class="check-icon">✓</span> Color-Lock Protection</span>
+                            <span><span class="check-icon">✓</span> Fresh Floral Perfume</span>
+                            <span><span class="check-icon">✓</span> Machine & Hand Wash Friendly</span>
+                        </div>
+                        <table class="sku-table">
+                            <thead>
+                                <tr>
+                                    <th>Pack Type</th>
+                                    <th>Net Weight</th>
+                                    <th>Application</th>
+                                    <th>Packaging</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Small Pouch</td>
+                                    <td>500g / 1kg</td>
+                                    <td>Daily Family Laundry</td>
+                                    <td>Moisture-Proof Polybag</td>
+                                </tr>
+                                <tr>
+                                    <td>Value Saver</td>
+                                    <td>3kg / 5kg</td>
+                                    <td>Top & Front Load Wash</td>
+                                    <td>Heavy-Duty Handle Bag</td>
+                                </tr>
+                                <tr>
+                                    <td>Commercial Bulk</td>
+                                    <td>10kg / 25kg</td>
+                                    <td>Laundromats & Hostels</td>
+                                    <td>Woven Sacks / Buckets</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="catalog-footer">
+            <span>Dongra Industries (OPC) Pvt. Ltd. • Bhandara, Maharashtra • Official Product Catalog</span>
+            <span>Page 1 of 3</span>
+        </footer>
+    </div>
+
+    <!-- PAGE 2: DISH WASH & DEALERSHIP INFO -->
+    <div class="page">
+        <div>
+            <header class="catalog-header">
+                <div class="logo-area">
+                    <img src="assets/images/logo.png" alt="Dongra Industries Logo" class="logo-img" onerror="this.style.display='none'">
+                    <div>
+                        <div class="company-title">Dongra<span>Industries</span></div>
+                        <div style="font-size: 10px; color: #64748b; font-weight: 600;">Kitchen Care & Institutional Solutions</div>
+                    </div>
+                </div>
+                <div class="catalog-badge">Product Catalog 2026</div>
+            </header>
+
+            <!-- Product 2: Dish Wash Liquid -->
+            <div class="product-card">
+                <div class="product-grid">
+                    <img src="assets/images/dishliquid.png" alt="New PRITE Dish Wash Gel" class="product-thumb">
+                    <div>
+                        <div class="product-category">Kitchen Care Formula</div>
+                        <div class="product-title">New PRITE Dish Wash Gel / Liquid</div>
+                        <div class="product-desc">
+                            Ultra-concentrated grease-cutting gel powered by real lemon extracts. Lifts heavy burnt food residue, ghee, and burnt oils instantly, leaving kitchenware squeaky clean with sparkling shine and zero white residue.
+                        </div>
+                        <div class="feature-bullets">
+                            <span><span class="check-icon">✓</span> 1 Spoon Cleans a Sink Full</span>
+                            <span><span class="check-icon">✓</span> 100% Zero White Chalk Residue</span>
+                            <span><span class="check-icon">✓</span> Natural Citrus Lemon Fragrance</span>
+                            <span><span class="check-icon">✓</span> Gentle & Safe on Hands</span>
+                        </div>
+                        <table class="sku-table">
+                            <thead>
+                                <tr>
+                                    <th>Pack Type</th>
+                                    <th>Volume</th>
+                                    <th>Features</th>
+                                    <th>Case Packing</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Retail Bottle</td>
+                                    <td>250ml / 500ml</td>
+                                    <td>Flip-top & Pump Dispenser</td>
+                                    <td>24 Units / Box</td>
+                                </tr>
+                                <tr>
+                                    <td>Family Refill</td>
+                                    <td>1 Litre Pouch</td>
+                                    <td>Spout Cap Economical Pack</td>
+                                    <td>12 Units / Box</td>
+                                </tr>
+                                <tr>
+                                    <td>Commercial Can</td>
+                                    <td>5 Litre Can</td>
+                                    <td>Catering & Restaurant Grade</td>
+                                    <td>4 Cans / Box</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Laundry Care snippet -->
+            <div class="product-card">
+                <div class="product-grid">
+                    <img src="assets/images/londary.jpeg" alt="Commercial Laundry Care" class="product-thumb">
+                    <div>
+                        <div class="product-category">Institutional & Bulk Care</div>
+                        <div class="product-title">Bulk Commercial Solutions</div>
+                        <div class="product-desc">
+                            Tailored formulations for institutional bulk buyers including hotel chains, hospitals, commercial laundries, and restaurant canteens. Competitive volume pricing and customizable batch concentrations.
+                        </div>
+                        <div class="feature-bullets">
+                            <span><span class="check-icon">✓</span> High-Efficiency Surfactants</span>
+                            <span><span class="check-icon">✓</span> Low Foam / Machine Optimized</span>
+                            <span><span class="check-icon">✓</span> Reliable Batch Consistency</span>
+                            <span><span class="check-icon">✓</span> Direct Manufacturer Supply</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wholesale & Dealership Information -->
+            <div class="contact-box">
+                <div>
+                    <strong>Wholesale & Distributorship</strong>
+                    Direct factory supply, regional exclusive dealerships, and retail distribution support.
+                </div>
+                <div>
+                    <strong>Trade Enquiries</strong>
+                    Contact: Ashish Dongre<br>
+                    Phone: +91 (555) 123-4567<br>
+                    Email: info@dongraindustries.com
+                </div>
+                <div>
+                    <strong>Factory & Headquarters</strong>
+                    Dongra Industries (OPC) Pvt. Ltd.<br>
+                    Bhandara, Maharashtra, India<br>
+                    GSTIN: 27AAHCD8241Q1Z0
+                </div>
+            </div>
+        </div>
+
+        <footer class="catalog-footer">
+            <span>© 2026 Dongra Industries (OPC) Pvt. Ltd. • www.dongraindustries.com</span>
+            <span>Page 2 of 3</span>
+        </footer>
+    </div>
+
+    <!-- PAGE 3: NEW PRITE INTIMATE FABRIC WASH (CLINICAL & ANTIMICROBIAL) -->
+    <div class="page">
+        <div>
+            <header class="catalog-header" style="border-bottom-color: #0f766e;">
+                <div class="logo-area">
+                    <img src="assets/images/logo.png" alt="Dongra Industries Logo" class="logo-img" onerror="this.style.display='none'">
+                    <div>
+                        <div class="company-title" style="color: #0f766e;">NEW PRITE<span> Intimate Care</span></div>
+                        <div style="font-size: 10px; color: #64748b; font-weight: 600;">The Science of Cleaner, Healthier Innerwear</div>
+                    </div>
+                </div>
+                <div class="catalog-badge" style="background: #0f766e; color: #ffffff;">Specialized Innovation</div>
+            </header>
+
+            <div class="cover-banner" style="background: linear-gradient(135deg, #0f766e 0%, #115e59 100%); padding: 20px 22px; margin-bottom: 16px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+                    <div>
+                        <h1 style="font-size: 22px; margin-bottom: 4px;">NEW PRITE Antimicrobial Intimate Fabric Wash</h1>
+                        <p style="font-size: 12px; margin-bottom: 0;">Targeted innerwear hygiene engineered to eliminate the warm, humid microclimate (35–37°C, 70–90% humidity) where bacteria & fungi thrive.</p>
+                    </div>
+                    <div style="background: rgba(255, 255, 255, 0.15); border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 10px; padding: 8px 14px; text-align: center;">
+                        <div style="font-family: 'Outfit', sans-serif; font-size: 20px; font-weight: 800; color: #34d399;">99.9%</div>
+                        <div style="font-size: 9px; text-transform: uppercase; font-weight: 700; color: #ffffff;">Germs Killed (AATCC 100)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3 Step Mechanism Grid -->
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px;">
+                <div style="border: 1px solid #ccfbf1; background: #f0fdfa; border-radius: 10px; padding: 12px;">
+                    <div style="color: #0f766e; font-weight: 800; font-size: 11px; text-transform: uppercase; margin-bottom: 4px;">Step 1 — Strips Residue</div>
+                    <div style="font-size: 12px; font-weight: 700; color: #134e4a; margin-bottom: 4px;">SLES + APG + CAPB</div>
+                    <p style="font-size: 10.5px; color: #334155; line-height: 1.4;">Lifts deep protein deposits, sweat, discharge, and dead skin. Zero organic residue = zero food for bacteria.</p>
+                </div>
+                <div style="border: 1px solid #ccfbf1; background: #f0fdfa; border-radius: 10px; padding: 12px;">
+                    <div style="color: #0f766e; font-weight: 800; font-size: 11px; text-transform: uppercase; margin-bottom: 4px;">Step 2 — Kills Pathogens</div>
+                    <div style="font-size: 12px; font-weight: 700; color: #134e4a; margin-bottom: 4px;">Piroctone + Climbazole</div>
+                    <p style="font-size: 10.5px; color: #334155; line-height: 1.4;">Fortified with Tea Tree & Neem. Proven to kill E. coli, S. aureus, Candida albicans & Klebsiella on contact.</p>
+                </div>
+                <div style="border: 1px solid #ccfbf1; background: #f0fdfa; border-radius: 10px; padding: 12px;">
+                    <div style="color: #0f766e; font-weight: 800; font-size: 11px; text-transform: uppercase; margin-bottom: 4px;">Step 3 — pH Neutraliser</div>
+                    <div style="font-size: 12px; font-weight: 700; color: #134e4a; margin-bottom: 4px;">pH 4.5–5.2 Shield</div>
+                    <p style="font-size: 10.5px; color: #334155; line-height: 1.4;">Gluconolactone (PHA) & Lactic Acid match skin's acid mantle, locking fabric into an anti-germ environment.</p>
+                </div>
+            </div>
+
+            <!-- Comparative Efficacy Table -->
+            <div class="product-card" style="padding: 14px; margin-bottom: 14px;">
+                <div style="font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 700; color: #0b2545; margin-bottom: 8px;">
+                    Clinical Comparison: Regular Detergent vs. PRITE Intimate Fabric Wash
+                </div>
+                <table class="sku-table" style="font-size: 10.5px;">
+                    <thead>
+                        <tr>
+                            <th style="width: 25%; background: #fee2e2; color: #991b1b;">Without PRITE (Regular Wash)</th>
+                            <th style="width: 45%; background: #ecfdf5; color: #065f46;">With PRITE Protection</th>
+                            <th style="width: 30%; background: #f1f5f9; color: #0f766e;">Active Ingredients</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="color: #b91c1c; font-weight: 600;">Organic residue stays on fabric</td>
+                            <td style="color: #047857; font-weight: 600;">Strips all residue from fibres</td>
+                            <td>SLES + APG + CAPB Surfactants</td>
+                        </tr>
+                        <tr>
+                            <td style="color: #b91c1c; font-weight: 600;">Microclimate is warm & hospitable</td>
+                            <td style="color: #047857; font-weight: 600;">pH 4.5–5.2 makes fabric hostile to germs</td>
+                            <td>Lactic Acid + Gluconolactone (PHA)</td>
+                        </tr>
+                        <tr>
+                            <td style="color: #b91c1c; font-weight: 600;">Bacteria multiply (1 to 1,000 in 3h)</td>
+                            <td style="color: #047857; font-weight: 600;">Kills 99.9% bacteria on fabric</td>
+                            <td>Piroctone Olamine + Tea Tree + Neem</td>
+                        </tr>
+                        <tr>
+                            <td style="color: #b91c1c; font-weight: 600;">Fungi thrive in moist fabric</td>
+                            <td style="color: #047857; font-weight: 600;">Kills Candida & dermatophytes on contact</td>
+                            <td>Climbazole (0.3%) + Piroctone Olamine</td>
+                        </tr>
+                        <tr>
+                            <td style="color: #b91c1c; font-weight: 600;">Odour, itching & skin infection risk</td>
+                            <td style="color: #047857; font-weight: 600;">Residue-free fabric — safe contact</td>
+                            <td>Complete Multi-Barrier Formulation</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Key Fact and Badges -->
+            <div style="background: #fffbeb; border-left: 4px solid #f59e0b; border-radius: 8px; padding: 10px 14px; margin-bottom: 14px; font-size: 11px; color: #92400e; line-height: 1.45;">
+                <strong>Key Clinical Fact:</strong> A study on regularly washed innerwear found up to <strong>10,000 living bacteria per cm²</strong> even after a standard detergent wash. Regular detergent removes surface dirt — but not the microclimate that breeds germs.
+            </div>
+
+            <div style="display: flex; gap: 8px; justify-content: space-between; margin-bottom: 14px; flex-wrap: wrap;">
+                <span style="border: 1px solid #cbd5e1; border-radius: 999px; padding: 4px 12px; font-size: 10px; font-weight: 700; color: #0f766e; background: #ffffff;">✓ Paraben-Free</span>
+                <span style="border: 1px solid #cbd5e1; border-radius: 999px; padding: 4px 12px; font-size: 10px; font-weight: 700; color: #0f766e; background: #ffffff;">✓ pH Balanced 4.5–5.2</span>
+                <span style="border: 1px solid #cbd5e1; border-radius: 999px; padding: 4px 12px; font-size: 10px; font-weight: 700; color: #0f766e; background: #ffffff;">✓ Fabric Safe</span>
+                <span style="border: 1px solid #cbd5e1; border-radius: 999px; padding: 4px 12px; font-size: 10px; font-weight: 700; color: #0f766e; background: #ffffff;">✓ Dermatologist Tested</span>
+                <span style="border: 1px solid #cbd5e1; border-radius: 999px; padding: 4px 12px; font-size: 10px; font-weight: 700; color: #0f766e; background: #ffffff;">✓ Made in India</span>
+                <span style="border: 1px solid #0f766e; border-radius: 999px; padding: 4px 12px; font-size: 10px; font-weight: 800; color: #ffffff; background: #0f766e;">Pack: 300 ml Bottle</span>
+            </div>
+
+            <!-- Trade Info Box -->
+            <div class="contact-box" style="margin-top: 6px; border-left-color: #0f766e;">
+                <div>
+                    <strong>Commercial Distribution</strong>
+                    Available for pharmacy chains, supermarkets, retail distributors & e-commerce trade.
+                </div>
+                <div>
+                    <strong>Trade Enquiries & Dealership</strong>
+                    Contact: <strong>Ashish Dongre</strong><br>
+                    Email: info@dongraindustries.com<br>
+                    Phone: +91 (555) 123-4567
+                </div>
+                <div>
+                    <strong>Manufacturing & Corporate Entity</strong>
+                    <strong>Dongra Industries (OPC) Pvt. Ltd.</strong><br>
+                    Bhandara, Maharashtra, India<br>
+                    <strong>GSTIN:</strong> 27AAHCD8241Q1Z0
+                </div>
+            </div>
+        </div>
+
+        <footer class="catalog-footer">
+            <span>Dongra Industries (OPC) Pvt. Ltd. • Brand: PRITE • Bhandara, Maharashtra • GSTIN: 27AAHCD8241Q1Z0</span>
+            <span>Page 3 of 3</span>
+        </footer>
+    </div>
+
+</body>
+</html>
