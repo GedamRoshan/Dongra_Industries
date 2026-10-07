@@ -358,4 +358,85 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // ============================================================
+    // 13. SCROLL-TO-TOP BUTTON
+    // ============================================================
+    const scrollTopBtn = document.createElement('button');
+    scrollTopBtn.className = 'scroll-top-btn';
+    scrollTopBtn.setAttribute('aria-label', 'Scroll to top');
+    scrollTopBtn.innerHTML = '↑';
+    document.body.appendChild(scrollTopBtn);
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 400) {
+            scrollTopBtn.classList.add('visible');
+        } else {
+            scrollTopBtn.classList.remove('visible');
+        }
+    });
+
+    scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // ============================================================
+    // 14. FLOATING GRADIENT ORBS (Ambient Background Depth)
+    // ============================================================
+    const orbContainer = document.createElement('div');
+    orbContainer.setAttribute('aria-hidden', 'true');
+    for (let i = 0; i < 2; i++) {
+        const orb = document.createElement('div');
+        orb.className = 'gradient-orb';
+        orb.style.top = (Math.random() * 60 + 10) + 'vh';
+        orb.style.left = (Math.random() * 60 + 10) + 'vw';
+        orbContainer.appendChild(orb);
+    }
+    document.body.appendChild(orbContainer);
+
+    // ============================================================
+    // 15. CARD GLOW MOUSE TRACKING
+    // ============================================================
+    document.querySelectorAll('.card-modern').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty('--mouse-x', x + 'px');
+            card.style.setProperty('--mouse-y', y + 'px');
+        });
+    });
+
+    // ============================================================
+    // 16. SMOOTH SCROLL for Anchor Links
+    // ============================================================
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+
+    // ============================================================
+    // 17. STAGGER ANIMATION for Grid Children
+    // ============================================================
+    const staggerObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const children = entry.target.querySelectorAll('.card-modern, .animate');
+                children.forEach((child, index) => {
+                    child.style.transitionDelay = (index * 0.1) + 's';
+                    child.classList.add('active');
+                });
+                staggerObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.grid-2, .grid-3, .grid-4').forEach(grid => {
+        staggerObserver.observe(grid);
+    });
+
 });
