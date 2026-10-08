@@ -439,4 +439,31 @@ document.addEventListener('DOMContentLoaded', () => {
         staggerObserver.observe(grid);
     });
 
+    // ============================================================
+    // 18. DIRECT WHATSAPP FLOATING BUTTON (+91 7499401157)
+    // ============================================================
+    const initDirectWhatsAppButton = () => {
+        const WHATSAPP_NUMBER = "917499401157";
+        const DEFAULT_MSG = encodeURIComponent("Hello Dongra Industries, I am interested in your Prite products and wholesale details.");
+        const WA_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${DEFAULT_MSG}`;
+
+        const waLink = document.createElement('a');
+        waLink.href = WA_URL;
+        waLink.target = '_blank';
+        waLink.rel = 'noopener noreferrer';
+        waLink.className = 'whatsapp-float-btn';
+        waLink.setAttribute('aria-label', 'Chat with Dongra Industries on WhatsApp');
+        waLink.innerHTML = `
+            <span class="wa-tooltip-text">Chat on WhatsApp 👋</span>
+            <svg viewBox="0 0 24 24">
+                <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm.01 1.67c4.54 0 8.24 3.7 8.24 8.24 0 2.2-.86 4.27-2.41 5.83-1.56 1.55-3.63 2.41-5.83 2.41-1.42 0-2.82-.37-4.06-1.07l-.29-.16-3.02.79.81-2.94-.19-.3A8.172 8.172 0 0 1 3.8 11.91c0-4.54 3.7-8.24 8.25-8.24zm4.51 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.25-1.49-1.4-1.74-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.44.13-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.77 2.71 4.3 3.8.6.26 1.07.42 1.44.53.61.2 1.16.17 1.6.11.49-.07 1.47-.6 1.68-1.18.2-.58.2-1.08.14-1.18-.06-.1-.22-.17-.47-.29z"/>
+            </svg>
+        `;
+
+        document.body.appendChild(waLink);
+    };
+
+    initDirectWhatsAppButton();
+
 });
+

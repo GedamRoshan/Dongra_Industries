@@ -650,6 +650,38 @@ nav.scrolled {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
 }
 
+/* Button Groups */
+.btn-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Feature Check Items */
+.check-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.check-icon {
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  max-width: 28px;
+  border-radius: 50%;
+  background: rgba(2, 132, 199, 0.12);
+  color: var(--brand-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
 /* Grids */
 .grid-2 {
   display: grid;
@@ -1223,6 +1255,21 @@ footer ul li a:hover {
     border-radius: var(--radius-md);
   }
 
+  /* Responsive button clusters */
+  .btn-group {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 14px !important;
+    width: 100% !important;
+  }
+
+  .btn-group > * {
+    width: 100% !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+  }
+
   .page-header {
     padding: 96px 0 32px;
   }
@@ -1261,17 +1308,24 @@ footer ul li a:hover {
     justify-content: center;
     padding: 12px 18px;
     font-size: 0.92rem;
+    box-sizing: border-box;
   }
 
   /* Responsive button clusters */
   .btn-group,
-  [style*="display: flex"][style*="justify-content: center"],
-  [style*="display: flex"][style*="gap: 16px"],
-  [style*="display: flex"][style*="gap: 14px"],
-  [style*="display: flex"][style*="gap: 12px"] {
+  .hero-actions,
+  .cta-buttons {
+    display: flex !important;
     flex-direction: column !important;
     align-items: stretch !important;
-    width: 100%;
+    gap: 14px !important;
+    width: 100% !important;
+  }
+
+  .btn-group > * {
+    width: 100% !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
   }
 
   .stat-number {
@@ -1281,11 +1335,13 @@ footer ul li a:hover {
   .cert-badges-grid {
     flex-direction: column;
     align-items: stretch;
+    gap: 10px;
   }
 
   .cert-badge {
     width: 100%;
     justify-content: center;
+    box-sizing: border-box;
   }
 }
 
@@ -2671,5 +2727,112 @@ h2.section-title {
 @media (max-width: 600px) {
   .threat-pipeline {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   DIRECT WHATSAPP FLOATING BUTTON (+91 7499401157)
+   ============================================================ */
+.whatsapp-float-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45);
+  z-index: 99999;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.whatsapp-float-btn:hover {
+  transform: scale(1.1) translateY(-3px);
+  box-shadow: 0 12px 30px rgba(37, 211, 102, 0.6);
+  color: #ffffff;
+}
+
+.whatsapp-float-btn:active {
+  transform: scale(0.95);
+}
+
+.whatsapp-float-btn svg {
+  width: 34px;
+  height: 34px;
+  fill: #ffffff;
+}
+
+/* Pulsing Outer Glow Ring */
+.whatsapp-float-btn::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid rgba(37, 211, 102, 0.6);
+  animation: waPulseRing 2.2s infinite cubic-bezier(0.25, 0.8, 0.5, 1);
+  pointer-events: none;
+}
+
+@keyframes waPulseRing {
+  0% { transform: scale(0.92); opacity: 0.9; }
+  70% { transform: scale(1.35); opacity: 0; }
+  100% { transform: scale(1.35); opacity: 0; }
+}
+
+/* Tooltip Badge on Desktop Hover */
+.whatsapp-float-btn .wa-tooltip-text {
+  position: absolute;
+  right: 70px;
+  background: #0f172a;
+  color: #ffffff;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  font-family: var(--font-body, sans-serif);
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(10px);
+  transition: all 0.25s ease;
+  pointer-events: none;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+}
+
+.whatsapp-float-btn .wa-tooltip-text::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -5px;
+  transform: translateY(-50%);
+  border-width: 5px 0 5px 6px;
+  border-style: solid;
+  border-color: transparent transparent transparent #0f172a;
+}
+
+.whatsapp-float-btn:hover .wa-tooltip-text {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+@media (max-width: 480px) {
+  .whatsapp-float-btn {
+    bottom: 18px;
+    right: 18px;
+    width: 54px;
+    height: 54px;
+  }
+  .whatsapp-float-btn svg {
+    width: 30px;
+    height: 30px;
+  }
+  .whatsapp-float-btn .wa-tooltip-text {
+    display: none;
   }
 }

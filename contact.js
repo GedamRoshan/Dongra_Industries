@@ -1,6 +1,6 @@
 /**
  * Dongra Industries - Inquiry Form & Toast Notification Handler
- * Sends customer inquiries directly to: roshangedam647@gmail.com
+ * Sends customer inquiries directly to: dongraindustries.opc@gmail.com
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!inquiryForm) return;
 
     // Target recipient email address
-    const RECIPIENT_EMAIL = "roshangedam647@gmail.com";
+    const RECIPIENT_EMAIL = "dongraindustries.opc@gmail.com";
 
     inquiryForm.addEventListener('submit', async (e) => {
         e.preventDefault();
