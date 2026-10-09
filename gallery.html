@@ -100,7 +100,6 @@
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About Us</a></li>
-                <li><a href="team.html">Our Team</a></li>
                 <li><a href="details.html">Product Details</a></li>
                 <li><a href="gallery.html" class="active">Gallery</a></li>
                 <li><a href="contact.html">Contact Us</a></li>
@@ -139,44 +138,236 @@
     <!-- Gallery Grid -->
     <section class="container" style="padding-bottom: 100px;">
         <div class="grid-gallery">
-            <div class="gallery-item animate delay-1">
-                <img src="assets/images/prite-banner.png" alt="Prite Detergent Wash">
+            <!-- Product 1: Liquid Detergent -->
+            <div class="gallery-item animate delay-1" style="cursor: pointer;"
+                onclick="openGalleryModalByIndex(0)">
+                <img src="assets/images/new-prite-liquid-detergent.jpg" alt="New PRITE Liquid Detergent 1 Ltr Front & Top Load">
                 <div class="gallery-overlay">
-                    <h4>Prite Detergent Banner</h4>
+                    <h4>New PRITE Liquid Detergent (1 Ltr)</h4>
+                    <span style="font-size: 0.8rem; opacity: 0.9; margin-top: 4px; display: inline-block;">🔍 Click to enlarge</span>
                 </div>
             </div>
-            <div class="gallery-item animate delay-2">
-                <img src="assets/images/dishliquid.png" alt="Prite Dish Wash Liquid" style="object-fit: contain; background: #f8fafc;">
+
+            <!-- Product 2: Detergent Powder -->
+            <div class="gallery-item animate delay-2" style="cursor: pointer;"
+                onclick="openGalleryModalByIndex(1)">
+                <img src="assets/images/prite-banner.png" alt="New PRITE Detergent Powder">
                 <div class="gallery-overlay">
-                    <h4>Prite Dish Wash Formulation</h4>
+                    <h4>New PRITE Detergent Powder</h4>
+                    <span style="font-size: 0.8rem; opacity: 0.9; margin-top: 4px; display: inline-block;">🔍 Click to enlarge</span>
                 </div>
             </div>
-            <div class="gallery-item animate delay-3">
-                <img src="assets/images/quality.jpeg" alt="Quality & Lab Testing">
+
+            <!-- Product 3: Dish Wash Gel -->
+            <div class="gallery-item animate delay-3" style="cursor: pointer;"
+                onclick="openGalleryModalByIndex(2)">
+                <img src="assets/images/dishliquid.png" alt="PRITE Dish Wash Liquid" style="object-fit: contain; background: #f8fafc;">
                 <div class="gallery-overlay">
-                    <h4>Quality Standards & Testing</h4>
+                    <h4>PRITE Dish Wash Gel Formulation</h4>
+                    <span style="font-size: 0.8rem; opacity: 0.9; margin-top: 4px; display: inline-block;">🔍 Click to enlarge</span>
                 </div>
             </div>
-            <div class="gallery-item animate delay-1">
-                <img src="assets/images/factory_packaging.jpg" alt="Automated Bottling Line">
+
+            <!-- Product 4: Intimate Fabric Wash -->
+            <div class="gallery-item animate delay-1" style="cursor: pointer;"
+                onclick="openGalleryModalByIndex(3)">
+                <img src="assets/images/prite-intimate-brochure.jpg?v=2" alt="NEW PRITE Antimicrobial Intimate Fabric Wash" style="object-fit: contain; background: #fff1f2;">
                 <div class="gallery-overlay">
-                    <h4>Automated Packaging Line</h4>
-                </div>
-            </div>
-            <div class="gallery-item animate delay-2">
-                <img src="assets/images/about_img.jpg" alt="Clean Clothes and Fabrics">
-                <div class="gallery-overlay">
-                    <h4>Vibrant Fabric Cleanliness</h4>
-                </div>
-            </div>
-            <div class="gallery-item animate delay-3">
-                <img src="assets/images/hero_bg.jpg" alt="Dongra Manufacturing Plant">
-                <div class="gallery-overlay">
-                    <h4>Dongra Industrial Campus</h4>
+                    <h4>PRITE Antimicrobial Intimate Wash</h4>
+                    <span style="font-size: 0.8rem; opacity: 0.9; margin-top: 4px; display: inline-block;">🔍 Click to enlarge</span>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Interactive Lightbox Modal with Next / Prev Navigation -->
+    <div id="galleryModal"
+        style="display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(11, 37, 69, 0.95); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); justify-content: center; align-items: center; padding: 20px;"
+        onclick="if(event.target === this) closeGalleryModal()">
+        
+        <!-- Close Button -->
+        <button onclick="closeGalleryModal()"
+            style="position: absolute; top: 16px; right: 24px; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25); color: #ffffff; width: 44px; height: 44px; border-radius: 50%; font-size: 26px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease; z-index: 10000; line-height: 1;"
+            onmouseover="this.style.background='rgba(239, 68, 68, 0.8)'"
+            onmouseout="this.style.background='rgba(255,255,255,0.15)'"
+            title="Close (Esc)">&times;</button>
+
+        <!-- Previous Button (Floating Left) -->
+        <button onclick="event.stopPropagation(); prevGalleryItem();"
+            style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.3); color: #ffffff; width: 50px; height: 50px; border-radius: 50%; font-size: 24px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease; z-index: 10000; box-shadow: 0 8px 24px rgba(0,0,0,0.3);"
+            onmouseover="this.style.background='var(--brand-blue, #0284c7)'; this.style.transform='translateY(-50%) scale(1.1)';"
+            onmouseout="this.style.background='rgba(255,255,255,0.18)'; this.style.transform='translateY(-50%) scale(1)';"
+            title="Previous (Left Arrow)">❮</button>
+
+        <!-- Next Button (Floating Right) -->
+        <button onclick="event.stopPropagation(); nextGalleryItem();"
+            style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.3); color: #ffffff; width: 50px; height: 50px; border-radius: 50%; font-size: 24px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease; z-index: 10000; box-shadow: 0 8px 24px rgba(0,0,0,0.3);"
+            onmouseover="this.style.background='var(--brand-blue, #0284c7)'; this.style.transform='translateY(-50%) scale(1.1)';"
+            onmouseout="this.style.background='rgba(255,255,255,0.18)'; this.style.transform='translateY(-50%) scale(1)';"
+            title="Next (Right Arrow)">❯</button>
+
+        <!-- Modal Dialog Box -->
+        <div style="max-width: 840px; width: 100%; max-height: 92vh; display: flex; flex-direction: column; background: var(--bg-card, #ffffff); border-radius: 20px; overflow: hidden; box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5); border: 1.5px solid rgba(2, 132, 199, 0.3); animation: modalZoomIn 0.25s ease-out; position: relative;">
+            
+            <!-- Image Area -->
+            <div style="width: 100%; height: 60vh; min-height: 320px; background: #0b2545; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative;">
+                <img id="galleryModalImg" src="" alt="Gallery Preview"
+                    style="max-width: 100%; max-height: 60vh; width: auto; height: auto; object-fit: contain; display: block; transition: opacity 0.2s ease;">
+                
+                <!-- Counter Badge -->
+                <span id="galleryCounter" style="position: absolute; top: 14px; left: 16px; background: rgba(11, 37, 69, 0.75); backdrop-filter: blur(4px); color: #38bdf8; font-size: 0.8rem; font-weight: 700; padding: 4px 12px; border-radius: 20px; border: 1px solid rgba(56, 189, 248, 0.3);">1 / 10</span>
+            </div>
+
+            <!-- Footer Caption & Action Controls -->
+            <div style="padding: 18px 24px; width: 100%; background: var(--bg-card, #ffffff); display: flex; flex-direction: column; gap: 12px;">
+                <div>
+                    <h3 id="galleryModalTitle" style="color: var(--brand-navy, #0b2545); font-size: 1.25rem; margin-bottom: 4px; font-weight: 700;"></h3>
+                    <p id="galleryModalDesc" style="color: var(--text-body, #475569); font-size: 0.92rem; margin: 0; line-height: 1.5;"></p>
+                </div>
+
+                <!-- Footer Navigation Buttons -->
+                <div style="display: flex; justify-content: space-between; align-items: center; pt: 8px; border-top: 1px solid rgba(0,0,0,0.06); padding-top: 10px;">
+                    <button onclick="event.stopPropagation(); prevGalleryItem();"
+                        style="padding: 8px 18px; border-radius: 8px; background: #f1f5f9; color: var(--brand-navy, #0b2545); border: 1px solid #cbd5e1; font-weight: 600; font-size: 0.88rem; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: all 0.2s;"
+                        onmouseover="this.style.background='#e2e8f0'"
+                        onmouseout="this.style.background='#f1f5f9'">
+                        ❮ Previous
+                    </button>
+                    <span style="font-size: 0.82rem; color: var(--text-muted, #64748b);">Use arrow keys <kbd style="background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 4px; padding: 2px 6px; font-size: 0.75rem;">←</kbd> <kbd style="background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 4px; padding: 2px 6px; font-size: 0.75rem;">→</kbd> to navigate</span>
+                    <button onclick="event.stopPropagation(); nextGalleryItem();"
+                        style="padding: 8px 22px; border-radius: 8px; background: linear-gradient(135deg, var(--brand-blue, #0284c7), var(--brand-navy, #0b2545)); color: #ffffff; border: none; font-weight: 600; font-size: 0.88rem; cursor: pointer; display: flex; align-items: center; gap: 6px; box-shadow: 0 4px 12px rgba(2,132,199,0.3); transition: all 0.2s;"
+                        onmouseover="this.style.opacity='0.9'; this.style.transform='translateY(-1px)';"
+                        onmouseout="this.style.opacity='1'; this.style.transform='translateY(0)';">
+                        Next Product ❯
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        @keyframes modalZoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.94);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+
+    <script>
+        const galleryItems = [
+            {
+                src: 'assets/images/new-prite-liquid-detergent.jpg',
+                title: 'New PRITE Liquid Detergent (1 Ltr)',
+                desc: 'Front & Top Load Formula • Easily removes tough stains while keeping clothes bright and soft.'
+            },
+            {
+                src: 'assets/images/prite-banner.png',
+                title: 'New PRITE Detergent Powder',
+                desc: 'High-efficiency enzymatic cleaning formula that cleans tough tea, grease, and mud stains effortlessly.'
+            },
+            {
+                src: 'assets/images/dishliquid.png',
+                title: 'PRITE Dish Wash Gel Formulation',
+                desc: 'Concentrated lemon-powered grease cutting formulation gentle on hands with sparkling shine.'
+            },
+            {
+                src: 'assets/images/prite-intimate-brochure.jpg?v=2',
+                title: 'New PRITE Antimicrobial Innerwear & Delicate Fabric Wash',
+                desc: 'Smart Hygiene & Gentle Care • Specially formulated with Lactic Acid & Cucumber-Melon Fragrance • Kills 99.9% odour-causing microbes • Mildly acidic pH 3.8–4.2 • 300 ml.'
+            },
+            {
+                src: 'assets/images/event-business-accelerator.jpg',
+                title: 'Business Accelerator Program — Enterprise Scale',
+                desc: 'Trupti Dongare (Founder) representing Dongra Industries at the Business Accelerator Program, undergoing executive training for manufacturing scaling and women-centered product innovation.'
+            },
+            {
+                src: 'assets/images/event-brics-2026.jpg',
+                title: 'BRICS India Summit — Business Forum',
+                desc: 'Ashish Dongra (CEO) representing Dongra Industries at the BRICS Summit on sustainable manufacturing, export partnerships, and industrial innovation.'
+            },
+            {
+                src: 'assets/images/event-ramp-meet.jpg',
+                title: 'Reverse Buyer Seller Meet (RAMP) — Nagpur',
+                desc: 'Pritesh Dongra (Operations Director) representing Dongra Industries at the RAMP MSME Reverse Buyer Seller Meet in Nagpur for supply chain acceleration.'
+            }
+        ];
+
+        let currentGalleryIndex = 0;
+
+        function updateGalleryModalContent() {
+            const item = galleryItems[currentGalleryIndex];
+            if (!item) return;
+            const img = document.getElementById('galleryModalImg');
+            img.style.opacity = '0';
+            setTimeout(() => {
+                img.src = item.src;
+                img.alt = item.title;
+                img.style.opacity = '1';
+            }, 100);
+
+            document.getElementById('galleryModalTitle').textContent = item.title;
+            document.getElementById('galleryModalDesc').textContent = item.desc || '';
+            document.getElementById('galleryCounter').textContent = (currentGalleryIndex + 1) + ' / ' + galleryItems.length;
+        }
+
+        function openGalleryModalByIndex(index) {
+            currentGalleryIndex = (index >= 0 && index < galleryItems.length) ? index : 0;
+            updateGalleryModalContent();
+            const modal = document.getElementById('galleryModal');
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function openGalleryModal(imgSrc, title, desc) {
+            const foundIndex = galleryItems.findIndex(i => i.src === imgSrc);
+            if (foundIndex !== -1) {
+                openGalleryModalByIndex(foundIndex);
+            } else {
+                currentGalleryIndex = 0;
+                document.getElementById('galleryModalImg').src = imgSrc;
+                document.getElementById('galleryModalImg').alt = title;
+                document.getElementById('galleryModalTitle').textContent = title;
+                document.getElementById('galleryModalDesc').textContent = desc || '';
+                document.getElementById('galleryCounter').textContent = '';
+                document.getElementById('galleryModal').style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function nextGalleryItem() {
+            currentGalleryIndex = (currentGalleryIndex + 1) % galleryItems.length;
+            updateGalleryModalContent();
+        }
+
+        function prevGalleryItem() {
+            currentGalleryIndex = (currentGalleryIndex - 1 + galleryItems.length) % galleryItems.length;
+            updateGalleryModalContent();
+        }
+
+        function closeGalleryModal() {
+            const modal = document.getElementById('galleryModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', function(e) {
+            const modal = document.getElementById('galleryModal');
+            if (modal && modal.style.display === 'flex') {
+                if (e.key === 'Escape') {
+                    closeGalleryModal();
+                } else if (e.key === 'ArrowRight') {
+                    nextGalleryItem();
+                } else if (e.key === 'ArrowLeft') {
+                    prevGalleryItem();
+                }
+            }
+        });
+    </script>
 
     <!-- Industry Summits & Visits Section -->
     <section class="container" style="padding-bottom: 80px;">
@@ -189,37 +380,56 @@
             </p>
         </div>
 
-        <div class="grid-2" style="gap: 32px;">
+        <div class="grid-3" style="gap: 24px;">
+            <!-- Business Accelerator Program Visit -->
+            <div class="card-modern animate delay-1" style="padding: 0; overflow: hidden; border: 1.5px solid rgba(2, 132, 199, 0.2); cursor: pointer;"
+                onclick="openGalleryModalByIndex(4)">
+                <div style="width: 100%; height: 260px; overflow: hidden; background: #0b2545;">
+                    <img src="assets/images/event-business-accelerator.jpg" alt="Business Accelerator Program - Trupti Dongare"
+                        style="width: 100%; height: 100%; object-fit: cover; object-position: left 20%;">
+                </div>
+                <div style="padding: 22px;">
+                    <span style="color: var(--brand-blue); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.75rem; display: block; margin-bottom: 6px;">Executive Incubation</span>
+                    <h3 style="color: var(--brand-navy); font-size: 1.15rem; margin-bottom: 10px;">Business Accelerator Program</h3>
+                    <p style="color: var(--text-body); font-size: 0.88rem; line-height: 1.55; margin-bottom: 12px;">
+                        <strong>Attendee:</strong> Trupti Dongare (Founder)<br>
+                        Trupti Dongare representing Dongra Industries at the Business Accelerator Program, engaging in executive training for manufacturing scaling, enterprise governance, and women-centered FMCG product development.
+                    </p>
+                </div>
+            </div>
+
             <!-- BRICS Summit Visit -->
-            <div class="card-modern animate" style="padding: 0; overflow: hidden; border: 1.5px solid rgba(2, 132, 199, 0.2);">
-                <div style="width: 100%; height: 320px; overflow: hidden; background: #0b2545;">
+            <div class="card-modern animate delay-2" style="padding: 0; overflow: hidden; border: 1.5px solid rgba(2, 132, 199, 0.2); cursor: pointer;"
+                onclick="openGalleryModalByIndex(5)">
+                <div style="width: 100%; height: 260px; overflow: hidden; background: #0b2545;">
                     <img src="assets/images/event-brics-2026.jpg" alt="BRICS India Summit Delegation - Ashish Dongra"
                         style="width: 100%; height: 100%; object-fit: cover; object-position: center 25%;">
                 </div>
-                <div style="padding: 24px;">
-                    <span style="color: var(--brand-blue); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; display: block; margin-bottom: 6px;">Global Summit Delegation</span>
-                    <h3 style="color: var(--brand-navy); font-size: 1.25rem; margin-bottom: 10px;">BRICS India Summit — Business Forum</h3>
-                    <p style="color: var(--text-body); font-size: 0.92rem; line-height: 1.6; margin-bottom: 12px;">
+                <div style="padding: 22px;">
+                    <span style="color: var(--brand-blue); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.75rem; display: block; margin-bottom: 6px;">Global Summit Delegation</span>
+                    <h3 style="color: var(--brand-navy); font-size: 1.15rem; margin-bottom: 10px;">BRICS India Summit — Business Forum</h3>
+                    <p style="color: var(--text-body); font-size: 0.88rem; line-height: 1.55; margin-bottom: 12px;">
                         <strong>Attendee:</strong> Ashish Dongra (CEO)<br>
                         <strong>Theme:</strong> <em>"Building for Resilience, Innovation, Cooperation and Sustainability"</em><br>
-                        Representing Dongra Industries at the prestigious BRICS Summit, engaging in discussions on sustainable manufacturing, export partnerships, and industrial innovation.
+                        Representing Dongra Industries at the prestigious BRICS Summit on sustainable manufacturing, export partnerships, and industrial innovation.
                     </p>
                 </div>
             </div>
 
             <!-- RAMP Meet Visit -->
-            <div class="card-modern animate delay-1" style="padding: 0; overflow: hidden; border: 1.5px solid rgba(2, 132, 199, 0.2);">
-                <div style="width: 100%; height: 320px; overflow: hidden; background: #0b2545;">
+            <div class="card-modern animate delay-3" style="padding: 0; overflow: hidden; border: 1.5px solid rgba(2, 132, 199, 0.2); cursor: pointer;"
+                onclick="openGalleryModalByIndex(6)">
+                <div style="width: 100%; height: 260px; overflow: hidden; background: #0b2545;">
                     <img src="assets/images/event-ramp-meet.jpg" alt="RAMP Reverse Buyer Seller Meet Nagpur - Pritesh Dongra"
                         style="width: 100%; height: 100%; object-fit: cover; object-position: center 20%;">
                 </div>
-                <div style="padding: 24px;">
-                    <span style="color: var(--brand-blue); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; display: block; margin-bottom: 6px;">MSME Institutional Trade Meet</span>
-                    <h3 style="color: var(--brand-navy); font-size: 1.25rem; margin-bottom: 10px;">Reverse Buyer Seller Meet (RAMP Initiative) — Nagpur</h3>
-                    <p style="color: var(--text-body); font-size: 0.92rem; line-height: 1.6; margin-bottom: 12px;">
+                <div style="padding: 22px;">
+                    <span style="color: var(--brand-blue); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.75rem; display: block; margin-bottom: 6px;">MSME Institutional Trade Meet</span>
+                    <h3 style="color: var(--brand-navy); font-size: 1.15rem; margin-bottom: 10px;">Reverse Buyer Seller Meet (RAMP)</h3>
+                    <p style="color: var(--text-body); font-size: 0.88rem; line-height: 1.55; margin-bottom: 12px;">
                         <strong>Attendee:</strong> Pritesh Dongra (Operations Director)<br>
-                        <strong>Organized by:</strong> Ministry of MSME (Govt. of India), MSSIDC, Govt. of Maharashtra, FIEO & World Bank Group.<br>
-                        Pritesh Dongra representing Dongra Industries at the RAMP MSME Reverse Buyer Seller Meet in Nagpur, connecting with domestic and international institutional buyers and export trade networks.
+                        <strong>Organized by:</strong> Ministry of MSME, MSSIDC, Govt. of Maharashtra, FIEO & World Bank Group.<br>
+                        Pritesh Dongra representing Dongra Industries at the RAMP MSME Reverse Buyer Seller Meet in Nagpur for supply chain acceleration.
                     </p>
                 </div>
             </div>
@@ -244,7 +454,6 @@
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About Us</a></li>
-                    <li><a href="team.html">Our Team</a></li>
                     <li><a href="details.html">Product Details</a></li>
                     <li><a href="details.html#intimate-wash">NEW PRITE Intimate Wash</a></li>
                     <li><a href="gallery.html">Gallery & Media</a></li>
