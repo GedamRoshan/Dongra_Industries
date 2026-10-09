@@ -185,11 +185,16 @@ nav.scrolled {
   border-bottom: 1px solid var(--border-light);
 }
 
+nav .nav-container,
 .nav-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: relative;
+  max-width: 100% !important;
+  width: 100% !important;
+  margin: 0 auto;
+  padding: 0 clamp(24px, 4vw, 64px) !important;
 }
 
 /* Brand Logo */
